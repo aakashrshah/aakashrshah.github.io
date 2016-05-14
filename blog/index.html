@@ -42,14 +42,8 @@
 			<div class="bb-custom-wrapper">
 				<div id="bb-bookblock" class="bb-bookblock">
 
-					<div class="bb-item" id="item1">
-						<div class="content">
-							<div class="scroller">
-								<h2>A place of hope, but no pain.</h2>
-								<div w3-include-html="1.html"></div>
-							</div>
-						</div>
-					</div>
+
+					<div w3-include-html="post/1.html"></div>
 
 					<div class="bb-item" id="item2">
 						<div class="content">
@@ -85,18 +79,16 @@
 			</div>
 				
 		</div><!-- /container -->
-
+		<script src="http://www.w3schools.com/lib/w3data.js"></script>
     	<script src="js/page.js"></script>
 	    <script>
 	      $(function() {
 	        Page.init();
+	        w3IncludeHTML();
 	      });
 	    </script>
-	    	<script src="http://www.w3schools.com/lib/w3data.js"></script>
-	<script>
-			w3IncludeHTML();
-    </script>
 
+	    	
   </body>
 
 </html>
