@@ -22,6 +22,7 @@
     <script src="js/jquery.jscrollpane.min.js"></script>
     <script src="js/jquerypp.custom.js"></script>
     <script src="js/jquery.bookblock.js"></script>
+    <script src="http://www.w3schools.com/lib/w3data.js"></script>
 
   </head>
 
@@ -45,11 +46,7 @@
 						<div class="content">
 							<div class="scroller">
 								<h2>A place of hope, but no pain.</h2>
-								<p>
-									<p>Perfect skies but no rain.</p>
-								</p>
-
-								<p><em>From <a href="http://www.gutenberg.org/ebooks/41595" target="_blank">"The Funny Side of Physic"</a> by Aakash Shah</em></p>
+								<div w3-include-html="1.html"></div>
 							</div>
 						</div>
 					</div>
@@ -90,6 +87,9 @@
 		</div><!-- /container -->
 
     	<script src="js/page.js"></script>
+    		    <script>
+w3IncludeHTML();
+</script>
 	    <script>
 	      $(function() {
 
@@ -97,6 +97,7 @@
 
 	      });
 	    </script>
+
   </body>
 
 </html>
