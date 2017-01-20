@@ -4,11 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Template</title>
+    <link rel = "stylesheet" type = "text/css" href = "css/myStyle.css" />
     <script src="../../js/react.min.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
 </head>
 <body>
+    <center>
+        <h2>
+            Tic Tac Toe
+        </h2>
+        <h3><u>Day 1 </u></h3>
+    </center>
 
     <div id="container"></div>
 
@@ -28,7 +35,7 @@
         //Board class returns the entire board.
         class Board extends React.Component{
             renderSquare(i) {
-                return <Square />;
+                return <Square value="{i}" />;
             }
             render(){
                 const status = "Next Player : X";
@@ -76,6 +83,7 @@
         );
 
     </script>
+
     <script>
 
     </script>
