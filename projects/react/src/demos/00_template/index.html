@@ -9,19 +9,20 @@
     <script src="../../js/browser.min.js"></script>
 </head>
 <body>
-
+    <h2>Welcome to React!</h2>
     <div id="container">
-        <a href = "../01_day/day1.html">Day 1</a>
+
     </div>
 
     <script type="text/babel">
-        var Variable1 = React.createClass({
-
-        });
-        ReactDOM.render(
-            <h2>Welcome to React!</h2>,
-            document.getElementById('container')
-        );
+        class Index extends React.Component{
+            render(){
+                return(
+                    <a href = "../01_day/day1.html">Day 1</a>
+                );
+            }
+        }
+        ReactDOM.render(<Index/>,document.getElementById('container'));
     </script>
 </body>
 </html>
