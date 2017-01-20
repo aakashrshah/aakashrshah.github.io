@@ -35,8 +35,8 @@
             //Render is the function that you need to display. Can only be one.
             render(){
                 return(
-                    <button className="square" onClick={() => this.setState({value : 'X'})}>
-                        {this.propsgit .value}
+                    <button className="square" onClick={() => this.props.onClick()}>
+                        {this.props.value}
                     </button>
                 );
             }
@@ -53,9 +53,14 @@
             }
 
             renderSquare(i) {
-                return <Square value={this.state.squares[i]} />;
+                return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
             }
 
+            handleClick(i){
+                const squares = this.state.squares.slice();
+                squares[i] = 'X';
+                this.setState({squares : squares});
+            }
             render(){
                 const status = "Next Player : X";
                 return (
