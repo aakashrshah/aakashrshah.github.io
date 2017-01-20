@@ -23,10 +23,20 @@
 
         //Square class is to return a single square button.
         class Square extends React.Component{
+
+            //Constructors are pre defined methods which are private to the component.
+            constructor(){
+                super(); //Its required when calling from subclass's constructor.
+                this.state = {
+                    value : null,
+                };
+            }
+
+            //Render is the function that you need to display. Can only be one.
             render(){
                 return(
-                    <button className="square">
-
+                    <button className="square" onClick={() => this.setState({value : 'X'})}>
+                        {this.propsgit .value}
                     </button>
                 );
             }
@@ -34,9 +44,18 @@
 
         //Board class returns the entire board.
         class Board extends React.Component{
-            renderSquare(i) {
-                return <Square value="{i}" />;
+
+            constructor(){
+                super();
+                this.state = {
+                    squares : Array(9).fill(null),
+                };
             }
+
+            renderSquare(i) {
+                return <Square value={this.state.squares[i]} />;
+            }
+
             render(){
                 const status = "Next Player : X";
                 return (
