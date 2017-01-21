@@ -70,12 +70,14 @@
                     }],
                     xIsNext: true,
                     stepNumber : 0,
+                    xScore : 1,
+                    oScore : 0,
                 };
             }
 
             handleClick(i){
                 const history = this.state.history;
-                const current = history[history.length - 1];
+                const current = history[this.state.stepNumber];
                 const squares = current.squares.slice();
 
                 if(calculateWinner(squares) || squares[i]){
@@ -115,7 +117,7 @@
 
                 let status;
                 if (winner) {
-                    status = 'Winner: ' + winner;
+                    status = 'Winner : ' + winner;
                 } else {
                     status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
                 }
@@ -131,6 +133,15 @@
                         <div className="game-info">
                             <div>{/* status */}</div>
                             <ol>{moves}</ol>
+                        </div>
+                        <div className="score-board">
+                            Score Board
+                            <div className="xScore">
+                                X : {xscore}
+                            </div>
+                            <div className="oScore">
+                                O :
+                            </div>
                         </div>
                     </div>
                 );
