@@ -37,17 +37,9 @@
                 return <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />;
             }
             render(){
-                const winner = calculateWinner(this.props.squares);
-                let status;
-                if(winner){
-                    status = 'Winner : ' + winner;
-                }else{
-                    status = 'Next Player : ' + (this.props.xIsNext ? 'X' : 'O');
-                }
-
                 return (
                     <div>
-                        <div className="status">{status}</div>
+                        <div className="status">{this.props.status}</div>
                         <div className="board-row">
                             {this.renderSquare(0)}
                             {this.renderSquare(1)}
@@ -76,7 +68,8 @@
                     history: [{
                         squares: Array(9).fill(null)
                     }],
-                    xIsNext: true
+                    xIsNext: true,
+                    stepNumber : 0,
                 };
             }
 
@@ -94,18 +87,25 @@
                         squares: squares
                     }]),
                     xIsNext : !this.state.xIsNext,
+                    stepNumber: history.length
+                });
+            }
+
+            jumpTo(step){
+                this.setState({
+                    stepNumber : step,
+                    xIsNext : (step % 2 == 0) ? false : true,
                 });
             }
 
             render(){
                 const history = this.state.history;
-                const current = history[history.length - 1];
+                const current = history[this.state.stepNumber];
                 const winner = calculateWinner(current.squares);
 
                 const moves = history.map((step, move) => {
-                    const desc = move ?
-                        'Move #' + move :
-                        'Game start';
+                    const desc = move ? 'Move #' + move : 'Game start';
+
                     return (
                             <li>
                                 <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
@@ -113,11 +113,19 @@
                     );
                 });
 
+                let status;
+                if (winner) {
+                    status = 'Winner: ' + winner;
+                } else {
+                    status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+                }
+
                 return(
                     <div className="game">
                         <div className="game-board">
                             <Board squares={current.squares}
                                    onClick={(i) => this.handleClick(i)}
+                                   status={status}
                             />
                         </div>
                         <div className="game-info">
