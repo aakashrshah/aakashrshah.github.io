@@ -39,7 +39,6 @@
             render(){
                 return (
                     <div>
-                        <div className="status">{this.props.status}</div>
                         <div className="board-row">
                             {this.renderSquare(0)}
                             {this.renderSquare(1)}
@@ -70,7 +69,7 @@
                     }],
                     xIsNext: true,
                     stepNumber : 0,
-                    xScore : 1,
+                    xScore : 0,
                     oScore : 0,
                 };
             }
@@ -96,8 +95,18 @@
             jumpTo(step){
                 this.setState({
                     stepNumber : step,
-                    xIsNext : (step % 2 == 0) ? false : true,
+                    xIsNext : (step % 2) ? false : true,
                 });
+            }
+
+            updateScore(winner){
+                if(winner == 'X'){
+                    this.setState({
+                        xScore : this.state.xScore + 1
+                    });
+                }else if(winner == 'O'){
+                    console.log(this.state.oScore);
+                }
             }
 
             render(){
@@ -118,6 +127,7 @@
                 let status;
                 if (winner) {
                     status = 'Winner : ' + winner;
+                    this.updateScore(winner);
                 } else {
                     status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
                 }
@@ -127,20 +137,19 @@
                         <div className="game-board">
                             <Board squares={current.squares}
                                    onClick={(i) => this.handleClick(i)}
-                                   status={status}
                             />
                         </div>
                         <div className="game-info">
-                            <div>{/* status */}</div>
+                            <div>{status}</div>
                             <ol>{moves}</ol>
                         </div>
                         <div className="score-board">
                             Score Board
                             <div className="xScore">
-                                X : {xscore}
+                                X : {this.state.xScore}
                             </div>
                             <div className="oScore">
-                                O :
+                                O : {this.state.oScore}
                             </div>
                         </div>
                     </div>
