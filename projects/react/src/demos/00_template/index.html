@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+    <h2>Welcome to React!</h2>
+
+    <div id="container"></div>
+    
+    <script type="text/babel">
+        class Index extends React.Component{
+            render(){
+                return(
+                    <a href = "../01_day/day1.html">Day 1</a>
+                );
+            }
+        }
+        ReactDOM.render(<Index/>,document.getElementById('container'));
+    </script>
+</body>
+</html>
