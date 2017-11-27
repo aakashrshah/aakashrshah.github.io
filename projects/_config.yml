@@ -10,13 +10,13 @@ highlighter: rouge
 #
 title : Student Name
 author :
-  name : Student Name
-  email : bsharve@gmail.com
-  github : bsharvey
-  twitter : bsharvey
+  name : Aakash Shah
+  email : aakash5shah@gwmail.gwu.edu
+  github : aakashrshah
+  twitter : aadi.aakash
   feedburner : nil
 
-production_url : https://bsharvey.github.io/
+production_url : https://aakashrshah.github.io/projects/
 
 # Tell Github to use the kramdown markdown interpreter
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
