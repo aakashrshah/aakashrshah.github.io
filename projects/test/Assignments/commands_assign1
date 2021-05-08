@@ -1,0 +1,47 @@
+//useful github commands
+https://gist.github.com/hofmannsven/6814451
+
+brew install python
+
+https://pip.readthedocs.io/en/stable/installing/
+//download get-pip.py
+
+mkdir {EMSEpages}
+sudo python get-pip.py
+pip install -U pip
+
+pip3 install jupyter
+pip install ipython
+pip install numpy
+pip install scipy
+pip install matplotlib
+
+//Install jupyter with brew
+brew install jupyter
+
+
+ipython notebook
+
+//create a github account
+//create a username.github.io repository
+//upload zip file to to repository
+
+badd .gitignore
+:b2
+//add list of files to ignore when you push the entire directory
+
+//install git
+brew install git
+
+//unzip and add folder to directory
+git init
+git branch -m master gh-pages
+git add --all
+git status
+git commit -m "first commit"
+git remote add origin https://github.com/bsharve/bsharve.github.io.git
+//git remote remove origin
+git push -u origin gh-pages
+
+
+
