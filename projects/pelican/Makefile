@@ -8,7 +8,7 @@ OUTPUTDIR=$(BASEDIR)/output
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
-GITHUB_PAGES_BRANCH=fix/content_theme_pelican
+GITHUB_PAGES_BRANCH=fix/index_remove_from_projects
 
 
 DEBUG ?= 0
