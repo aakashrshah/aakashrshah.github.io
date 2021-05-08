@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title> and Beyond : Blog</title>
+    <meta name="description" content="Fullscreen Pageflip Layout with BookBlock" />
+    <meta name="keywords" content="fullscreen pageflip, booklet, layout, bookblock, jquery plugin, flipboard layout, sidebar menu" />
+    <meta name="author" content="Codrops" />
+
+    <link rel="shortcut icon" href="../favicon.ico"> 
+    <link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+
+
+    <script src="js/modernizr.custom.79639.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.jscrollpane.min.js"></script>
+    <script src="js/jquerypp.custom.js"></script>
+    <script src="js/jquery.bookblock.js"></script>
+
+
+  </head>
+
+  <body>
+		<div id="container" class="container">			
+			
+
+			<div class="menu-panel">
+				<h3><a href="http://aakashrshah.github.io/">Home</a> | Table of Contents</h3>
+				<ul id="menu-toc" class="menu-toc">
+					<li class="menu-toc-current"><a href="#item1">A place of hope, but no pain.</a></li>
+					<li class=""><a href="#item2">Dear god</a></li>
+				</ul>
+			</div>
+
+			<div class="bb-custom-wrapper">
+				<div id="bb-bookblock" class="bb-bookblock">
+
+					<div class="bb-item" id="item1">
+						<div class="content">
+							<div class="scroller">
+								<div w3-include-html="post/1.html"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item2">
+						<div class="content">
+							<div class="scroller">
+								<div w3-include-html="post/2.html"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item3">
+						<div class="content">
+							<div class="scroller">
+								<div w3-include-html="post/3.html"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item4">
+						<div class="content">
+							<div class="scroller">
+								<div w3-include-html="post/4.html"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item5">
+						<div class="content">
+							<div class="scroller">
+								<div w3-include-html="post/5.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<nav>
+					<span id="bb-nav-prev">&larr;</span>
+					<span id="bb-nav-next">&rarr;</span>
+				</nav>
+
+				<span id="tblcontents" class="menu-button">Table of Contents</span>
+			</div>
+				
+		</div><!-- /container -->
+		<script src="http://www.w3schools.com/lib/w3data.js"></script>
+    	<script src="js/page.js"></script>
+	    <script>
+	      $(function() {
+	        Page.init();
+	        w3IncludeHTML();
+	      });
+	    </script>
+
+	    	
+  </body>
+
+</html>
