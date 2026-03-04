@@ -1,0 +1,96 @@
+:root {
+  --bg-dark: #0a0a0b;
+  --bg-light: #ffffff;
+  --bg-light-alt: #f8fafc;
+  --bg-warm: #fffbf5;
+  --text-dark: #1e293b;
+  --text-dark-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-amber: #d97706;
+  --accent-amber-light: #fbbf24;
+  --accent-blue: #3b82f6;
+  --accent-violet: #8b5cf6;
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --gradient-warm: linear-gradient(135deg, #d97706, #ea580c);
+  --border-light: #e2e8f0;
+  --border-warm: #fde68a;
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-full: 9999px;
+  --font-sans: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-serif: 'Georgia','Times New Roman',serif;
+  --font-mono: 'JetBrains Mono','Fira Code',monospace;
+  --max-width: 900px;
+  --nav-height: 72px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-sans);font-size:16px;line-height:1.7;color:var(--text-dark);background:var(--bg-warm)}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* Nav */
+.alm-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-height);display:flex;align-items:center;background:rgba(255,251,245,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-light)}
+.alm-nav-inner{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.alm-nav-logo{font-size:1.1rem;font-weight:700;color:var(--text-dark);letter-spacing:-0.02em}
+.alm-nav-logo span{color:var(--accent-amber)}
+.alm-nav-links{display:flex;align-items:center;gap:20px}
+.alm-nav-links a{font-size:.85rem;font-weight:500;color:var(--text-muted);transition:color .2s}
+.alm-nav-links a:hover{color:var(--text-dark)}
+
+/* Hero */
+.alm-hero{padding:120px 24px 48px;max-width:var(--max-width);margin:0 auto;text-align:center}
+.alm-hero-icon{font-size:2.5rem;margin-bottom:16px}
+.alm-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:12px}
+.alm-hero h1 span{background:var(--gradient-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.alm-hero p{color:var(--text-muted);font-size:1rem;max-width:560px;margin:0 auto;line-height:1.7}
+
+/* Controls */
+.alm-controls{max-width:var(--max-width);margin:0 auto;padding:32px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.alm-search{position:relative;flex:1;min-width:200px}
+.alm-search input{width:100%;padding:10px 14px 10px 40px;border:1px solid var(--border-light);border-radius:var(--radius-full);font-size:.875rem;font-family:var(--font-sans);background:white;outline:none;transition:border .2s}
+.alm-search input:focus{border-color:var(--accent-amber)}
+.alm-search i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.85rem}
+.alm-age-filters{display:flex;gap:6px;flex-wrap:wrap}
+.age-btn{padding:5px 14px;border-radius:var(--radius-full);font-size:.75rem;font-weight:600;background:white;color:var(--text-muted);border:1px solid var(--border-light);transition:all .2s}
+.age-btn:hover,.age-btn.active{background:var(--accent-amber);color:white;border-color:var(--accent-amber)}
+.alm-count{font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted);padding:8px 0}
+
+/* Tips */
+.alm-tips{max-width:var(--max-width);margin:0 auto;padding:0 24px 80px}
+.tip-card{background:white;border:1px solid var(--border-light);border-radius:var(--radius-md);padding:32px;margin-bottom:20px;transition:all .3s ease;position:relative;overflow:hidden}
+.tip-card:hover{box-shadow:var(--shadow-lg);border-color:transparent;transform:translateY(-2px)}
+.tip-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gradient-warm);border-radius:4px 0 0 4px}
+.tip-number{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.tip-title{font-size:1.35rem;font-weight:700;color:var(--text-dark);margin-bottom:8px;letter-spacing:-0.02em;line-height:1.3}
+.tip-meta{display:flex;gap:8px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.tip-age{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--radius-full);font-size:.7rem;font-weight:600;background:rgba(217,119,6,0.1);color:var(--accent-amber);border:1px solid rgba(217,119,6,0.2)}
+.tip-tag{padding:3px 10px;border-radius:var(--radius-full);font-size:.7rem;font-weight:500;background:var(--bg-light-alt);color:var(--text-muted);border:1px solid var(--border-light)}
+.tip-content{font-family:var(--font-serif);font-size:1.05rem;line-height:1.85;color:var(--text-dark-secondary)}
+.tip-content p{margin-bottom:16px}
+.tip-content p:last-child{margin-bottom:0}
+
+.no-tips{text-align:center;padding:60px 24px;color:var(--text-muted);font-size:1rem}
+
+/* Footer */
+.alm-footer{background:var(--bg-dark);padding:32px 0;text-align:center}
+.alm-footer p{font-size:.8rem;color:var(--text-muted);max-width:100%;text-align:center;margin:0 auto}
+
+/* How to add */
+.alm-howto{max-width:var(--max-width);margin:0 auto;padding:0 24px 60px}
+.alm-howto-card{background:white;border:1px solid var(--border-light);border-radius:var(--radius-md);padding:28px;margin-top:24px}
+.alm-howto-card h3{font-size:1rem;margin-bottom:12px;color:var(--text-dark)}
+.alm-howto-card ol{list-style:decimal;padding-left:20px}
+.alm-howto-card li{font-size:.875rem;color:var(--text-dark-secondary);margin-bottom:8px;line-height:1.6}
+.alm-howto-card code{font-family:var(--font-mono);font-size:.8em;padding:2px 6px;background:var(--bg-light-alt);border-radius:4px;border:1px solid var(--border-light)}
+.alm-howto-card pre{background:#1e293b;color:#e2e8f0;padding:16px;border-radius:var(--radius-sm);overflow-x:auto;margin:12px 0;font-size:.8rem;line-height:1.5;font-family:var(--font-mono)}
+
+@media(max-width:768px){
+  .alm-controls{flex-direction:column}
+  .alm-search{min-width:100%}
+  .tip-card{padding:24px}
+  .alm-nav-links .hide-mobile{display:none}
+}
