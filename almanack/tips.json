@@ -1,0 +1,13 @@
+{
+  "title": "The Almanack",
+  "subtitle": "A compendium of life pro tips for becoming a mature, financially sound, and spatially aware man — early.",
+  "tips": [
+    {
+      "id": "marry-early",
+      "title": "Marry early, make kids early",
+      "age": "22-28",
+      "tags": ["relationships", "life-planning", "family"],
+      "content": "There's a compounding effect to starting a family early that nobody talks about. When you marry and have kids in your mid-twenties, you grow up alongside your children. By the time they're teenagers, you're still young enough to be active, relatable, and financially hitting your stride. By 50, your kids are independent adults — and you still have decades of energy and freedom ahead. The math works: early commitment compounds into long-term freedom. Most people optimize for freedom in their twenties and end up scrambling for stability in their forties. Flip the script."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Almanack | Aakash Shah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/almanack.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="alm-nav">
+    <div class="alm-nav-inner">
+      <a href="../" class="alm-nav-logo">aakash<span>shah</span></a>
+      <div class="alm-nav-links">
+        <a href="../blog/" class="hide-mobile">Blog</a>
+        <a href="../#about" class="hide-mobile">Portfolio</a>
+        <a href="#howto">How to add</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="alm-hero">
+    <div class="alm-hero-icon">&#128218;</div>
+    <h1>The <span>Almanack</span></h1>
+    <p>Life pro tips and hard-earned lessons on becoming financially sound, spatially aware, and genuinely mature — collected over the years so you don't have to learn them the hard way.</p>
+  </div>
+
+  <!-- Controls -->
+  <div class="alm-controls">
+    <div class="alm-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="alm-search" placeholder="Search tips...">
+    </div>
+    <div class="alm-age-filters" id="age-filters"></div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:0 24px 12px">
+    <span class="alm-count" id="tip-count"></span>
+  </div>
+
+  <!-- Tips -->
+  <div id="tips-container" class="alm-tips">
+    <div class="no-tips">Loading tips...</div>
+  </div>
+
+  <!-- How to add -->
+  <div class="alm-howto" id="howto">
+    <div class="alm-howto-card">
+      <h3>How to add a new tip</h3>
+      <ol>
+        <li>Open <code>almanack/tips.json</code> in your repo.</li>
+        <li>Copy the template below and add it to the <code>"tips"</code> array.</li>
+        <li>Commit and push. The page auto-renders from the JSON — no HTML editing needed.</li>
+      </ol>
+      <pre>{
+  "id": "your-tip-slug",
+  "title": "Your Tip Title",
+  "age": "25-30",
+  "tags": ["finance", "mindset"],
+  "content": "Your tip content goes here. Use plain text. Multiple sentences work great. Keep it real."
+}</pre>
+      <p style="font-size:.8rem;color:#64748b;margin-top:12px"><strong>Age ranges:</strong> Use formats like <code>18-22</code>, <code>22-28</code>, <code>28-35</code>, <code>35-45</code>, <code>45+</code>. The filter buttons auto-generate from whatever you use.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="alm-footer">
+    <p>Aakash Shah &bull; Austin, TX</p>
+  </footer>
+
+  <script src="js/almanack.js"></script>
+</body>
+</html>
