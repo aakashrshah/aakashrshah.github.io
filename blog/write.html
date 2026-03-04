@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write a Post | Aakash Shah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Quill Editor -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="blog-nav">
+    <div class="blog-nav-inner">
+      <a href="../" class="blog-nav-logo">aakash<span>shah</span></a>
+      <div class="blog-nav-links">
+        <a href="./">All Posts</a>
+        <a href="../#about" class="hide-mobile">Portfolio</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="write-container">
+    <div class="write-header">
+      <h1>Write a new post</h1>
+      <p>Compose your post below, then export as HTML to add to your blog.</p>
+    </div>
+
+    <!-- Meta fields -->
+    <div class="write-meta">
+      <div>
+        <label for="post-title">Title</label>
+        <input type="text" id="post-title" placeholder="Your post title">
+      </div>
+      <div>
+        <label for="post-tags">Tags (comma separated)</label>
+        <input type="text" id="post-tags" placeholder="ai, product-management, life-sciences">
+      </div>
+    </div>
+
+    <!-- Rich Text Editor -->
+    <div class="write-editor-wrapper">
+      <div id="editor"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="write-actions">
+      <button id="btn-export" class="btn-export"><i class="fa-solid fa-download"></i> Export HTML</button>
+      <button id="btn-preview" class="btn-preview"><i class="fa-solid fa-eye"></i> Preview</button>
+      <button id="btn-copy" class="btn-copy"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+    </div>
+
+    <!-- Instructions -->
+    <div class="write-instructions">
+      <h3>How to publish</h3>
+      <ol>
+        <li>Write your post using the rich text editor above.</li>
+        <li>Click <strong>Export HTML</strong> to download the complete blog post file.</li>
+        <li>Place the downloaded <code>.html</code> file in the <code>blog/posts/</code> directory.</li>
+        <li>Add the post entry to <code>blog/posts/posts.json</code> (the export will show you the JSON to copy).</li>
+        <li>Commit and push to GitHub. Your post will appear on the blog automatically.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div class="preview-overlay" id="preview-overlay">
+    <div class="preview-modal" style="position:relative">
+      <span class="preview-close" id="preview-close">&times;</span>
+      <iframe id="preview-body" style="width:100%;height:70vh;border:none;border-radius:8px"></iframe>
+    </div>
+  </div>
+
+  <!-- Quill -->
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>
