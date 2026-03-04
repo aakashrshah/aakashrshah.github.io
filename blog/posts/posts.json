@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "why-ai-products-fail-at-adoption",
+      "title": "Why AI Products Fail at User Adoption",
+      "excerpt": "The hardest part of building AI products isn't the model architecture or the training data. It's getting people to actually use them. Here's what I've learned about bridging the gap between technically impressive and genuinely useful.",
+      "date": "2024-12-15",
+      "tags": ["ai", "product-management", "user-adoption"],
+      "author": "Aakash Shah",
+      "file": "why-ai-products-fail-at-adoption.html"
+    },
+    {
+      "id": "agentic-ai-clinical-operations",
+      "title": "Agentic AI in Clinical Operations: Lessons from the Trenches",
+      "excerpt": "Building multi-agent systems that clinicians actually trust required rethinking everything I knew about product development. Here's how we designed a 6-agent orchestration system that works in the real world.",
+      "date": "2024-10-20",
+      "tags": ["ai", "life-sciences", "agentic-ai"],
+      "author": "Aakash Shah",
+      "file": "agentic-ai-clinical-operations.html"
+    }
+  ]
+}
