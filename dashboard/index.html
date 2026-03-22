@@ -45,50 +45,126 @@
     </div>
   </div>
 
-  <!-- Widgets -->
-  <div class="dash-grid">
+  <!-- ── Market Carousel ──────────────────────────────── -->
+  <div class="market-carousel" id="market-carousel">
 
-    <!-- ── Oil Price Widget ───────────────────────── -->
-    <div class="widget" id="oil-widget">
-      <div class="widget-header">
-        <div class="widget-title">
-          <i class="fa-solid fa-oil-well"></i>
-          Crude Oil Prices
-        </div>
-        <span class="widget-badge">WTI · Brent</span>
-      </div>
-      <div id="oil-widget-body">
-        <!-- Loading skeleton -->
-        <div class="oil-prices-row">
-          <div>
-            <div class="loading-shimmer" style="width:80px;height:.75rem;margin-bottom:10px"></div>
-            <div class="loading-shimmer" style="width:160px;height:2.5rem;margin-bottom:10px"></div>
-            <div class="loading-shimmer" style="width:200px;height:1.5rem"></div>
-          </div>
-          <div>
-            <div class="loading-shimmer" style="width:90px;height:.75rem;margin-bottom:10px"></div>
-            <div class="loading-shimmer" style="width:160px;height:2.5rem;margin-bottom:10px"></div>
-            <div class="loading-shimmer" style="width:200px;height:1.5rem"></div>
-          </div>
-        </div>
-        <div class="loading-shimmer" style="width:100%;height:100px;margin:20px 0"></div>
-        <div class="insights-grid">
-          <div class="loading-shimmer" style="height:120px"></div>
-          <div class="loading-shimmer" style="height:120px"></div>
-          <div class="loading-shimmer" style="height:120px"></div>
-          <div class="loading-shimmer" style="height:120px"></div>
-        </div>
-      </div>
+    <!-- Tab strip (one tab per market) -->
+    <div class="carousel-tabs" id="carousel-tabs">
+      <button class="carousel-tab active" data-idx="0">
+        <i class="fa-solid fa-oil-well"></i>
+        Crude Oil
+      </button>
+      <!-- future market tabs injected here -->
     </div>
 
-  </div>
+    <!-- Slides viewport -->
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carousel-track">
+
+        <!-- ── Slide 0: Crude Oil ───────────────────── -->
+        <div class="carousel-slide">
+
+          <!-- Supply chain process diagram -->
+          <div class="process-diagram">
+            <div class="process-step">
+              <div class="process-icon">
+                <i class="fa-solid fa-mountain"></i>
+              </div>
+              <div class="process-body">
+                <span class="process-label">Exploration</span>
+                <span class="process-desc">Seismic surveys locate subsurface reservoirs onshore &amp; offshore</span>
+              </div>
+            </div>
+
+            <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <div class="process-step">
+              <div class="process-icon">
+                <i class="fa-solid fa-oil-well"></i>
+              </div>
+              <div class="process-body">
+                <span class="process-label">Extraction</span>
+                <span class="process-desc">Wells drilled; crude pumped to surface at WTI &amp; Brent benchmarks</span>
+              </div>
+            </div>
+
+            <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <div class="process-step">
+              <div class="process-icon">
+                <i class="fa-solid fa-industry"></i>
+              </div>
+              <div class="process-body">
+                <span class="process-label">Refining</span>
+                <span class="process-desc">Distillation &amp; cracking yield gasoline, diesel, jet fuel, naphtha</span>
+              </div>
+            </div>
+
+            <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <div class="process-step">
+              <div class="process-icon">
+                <i class="fa-solid fa-gas-pump"></i>
+              </div>
+              <div class="process-body">
+                <span class="process-label">Distribution</span>
+                <span class="process-desc">Pipelines &amp; tankers deliver to terminals, retailers &amp; industry</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oil price data widget -->
+          <div class="widget" id="oil-widget">
+            <div class="widget-header">
+              <div class="widget-title">
+                <i class="fa-solid fa-oil-well"></i>
+                Crude Oil Prices
+              </div>
+              <span class="widget-badge">WTI · Brent</span>
+            </div>
+            <div id="oil-widget-body">
+              <!-- Loading skeleton -->
+              <div class="oil-prices-row">
+                <div>
+                  <div class="loading-shimmer" style="width:80px;height:.75rem;margin-bottom:10px"></div>
+                  <div class="loading-shimmer" style="width:160px;height:2.5rem;margin-bottom:10px"></div>
+                  <div class="loading-shimmer" style="width:200px;height:1.5rem"></div>
+                </div>
+                <div>
+                  <div class="loading-shimmer" style="width:90px;height:.75rem;margin-bottom:10px"></div>
+                  <div class="loading-shimmer" style="width:160px;height:2.5rem;margin-bottom:10px"></div>
+                  <div class="loading-shimmer" style="width:200px;height:1.5rem"></div>
+                </div>
+              </div>
+              <div class="loading-shimmer" style="width:100%;height:100px;margin:20px 0"></div>
+              <div class="insights-grid">
+                <div class="loading-shimmer" style="height:120px"></div>
+                <div class="loading-shimmer" style="height:120px"></div>
+                <div class="loading-shimmer" style="height:120px"></div>
+                <div class="loading-shimmer" style="height:120px"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end slide 0 -->
+
+      </div><!-- end carousel-track -->
+    </div><!-- end carousel-viewport -->
+
+    <!-- Dot indicators -->
+    <div class="carousel-dots" id="carousel-dots">
+      <span class="carousel-dot active" data-idx="0"></span>
+    </div>
+
+  </div><!-- end market-carousel -->
 
   <!-- Footer -->
   <footer class="dash-footer">
     <p>
       Oil price data via <a href="https://www.alphavantage.co" target="_blank" rel="noopener">Alpha Vantage</a>
-      · Refreshed every 6 hours by GitHub Actions
-      · <a href="../">aakashrshah.github.io</a>
+      &middot; Refreshed every 6 hours by GitHub Actions
+      &middot; <a href="../">aakashrshah.github.io</a>
     </p>
   </footer>
 

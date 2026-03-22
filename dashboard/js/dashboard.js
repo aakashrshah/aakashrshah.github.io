@@ -386,11 +386,39 @@
     }
   }
 
-  // Re-resolve relative path when loaded from /dashboard/index.html
-  // fetch() path above uses '../dashboard/data/...' — override for local dev
+  // ── Carousel ───────────────────────────────────────────────────────────────
+
+  function initCarousel() {
+    const track  = document.getElementById('carousel-track');
+    const tabs   = document.querySelectorAll('.carousel-tab');
+    const dots   = document.querySelectorAll('.carousel-dot');
+    if (!track || !tabs.length) return;
+
+    let current = 0;
+
+    function goTo(idx) {
+      const slides = track.querySelectorAll('.carousel-slide');
+      if (idx < 0 || idx >= slides.length) return;
+      current = idx;
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => goTo(i)));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // Swipe support for mobile
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
-    // Detect if we're at /dashboard/ and fix the path
-    const script = document.currentScript;
+    initCarousel();
     init();
   });
 })();
