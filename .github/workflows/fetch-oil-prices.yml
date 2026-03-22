@@ -2,9 +2,8 @@ name: Fetch Oil Prices
 
 on:
   schedule:
-    # Every 6 hours (Alpha Vantage free tier: 25 req/day — 4 runs/day = 8 calls)
     - cron: '0 */6 * * *'
-  workflow_dispatch:  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,61 +16,66 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Use the default GITHUB_TOKEN — secrets.GITHUB_TOKEN is auto-provided
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fetch WTI and Brent crude oil prices
+      - name: Verify API key is set
         env:
           ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
         run: |
-          echo "Fetching WTI crude oil data..."
-          curl -sf "https://www.alphavantage.co/query?function=WTI&interval=daily&apikey=${ALPHA_VANTAGE_API_KEY}" \
-            -o /tmp/wti_raw.json
+          if [ -z "${ALPHA_VANTAGE_API_KEY}" ]; then
+            echo "ERROR: ALPHA_VANTAGE_API_KEY secret is not set."
+            echo "Go to Settings -> Secrets and variables -> Actions -> New repository secret"
+            exit 1
+          fi
+          KEY_LEN=${#ALPHA_VANTAGE_API_KEY}
+          KEY_PREVIEW="${ALPHA_VANTAGE_API_KEY:0:4}...${ALPHA_VANTAGE_API_KEY: -4}"
+          echo "API key is set -- length: ${KEY_LEN}, preview: ${KEY_PREVIEW}"
 
-          echo "Fetching Brent crude oil data..."
-          curl -sf "https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${ALPHA_VANTAGE_API_KEY}" \
-            -o /tmp/brent_raw.json
+      - name: Fetch WTI crude oil price
+        env:
+          ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+        run: |
+          echo "=== Fetching WTI crude oil (West Texas Intermediate) ==="
+          HTTP_STATUS=$(curl -s -o /tmp/wti_raw.json -w "%{http_code}" \
+            "https://www.alphavantage.co/query?function=WTI&interval=daily&apikey=${ALPHA_VANTAGE_API_KEY}")
+          echo "WTI HTTP status: ${HTTP_STATUS}"
+          if [ "${HTTP_STATUS}" != "200" ]; then
+            echo "ERROR: Non-200 response for WTI (got ${HTTP_STATUS})"
+            exit 1
+          fi
+          echo "WTI raw response (first 200 chars):"
+          head -c 200 /tmp/wti_raw.json
+          echo ""
 
-          echo "Combining into dashboard/data/oil-prices.json..."
-          python3 - <<'PYEOF'
-          import json, datetime, os, sys
+      - name: Wait to avoid rate limiting
+        run: sleep 15
 
-          def load(path):
-              with open(path) as f:
-                  return json.load(f)
+      - name: Fetch Brent crude oil price
+        env:
+          ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+        run: |
+          echo "=== Fetching Brent crude oil (ICE) ==="
+          HTTP_STATUS=$(curl -s -o /tmp/brent_raw.json -w "%{http_code}" \
+            "https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${ALPHA_VANTAGE_API_KEY}")
+          echo "Brent HTTP status: ${HTTP_STATUS}"
+          if [ "${HTTP_STATUS}" != "200" ]; then
+            echo "ERROR: Non-200 response for Brent (got ${HTTP_STATUS})"
+            exit 1
+          fi
+          echo "Brent raw response (first 200 chars):"
+          head -c 200 /tmp/brent_raw.json
+          echo ""
 
-          wti   = load('/tmp/wti_raw.json')
-          brent = load('/tmp/brent_raw.json')
-
-          # Validate — Alpha Vantage returns {"Information": "..."} on rate-limit errors
-          if 'data' not in wti or 'data' not in brent:
-              print("ERROR: Unexpected API response. Possible rate limit or bad API key.")
-              print("WTI response keys:", list(wti.keys()))
-              print("Brent response keys:", list(brent.keys()))
-              sys.exit(1)
-
-          output = {
-              'updated_at': datetime.datetime.utcnow().isoformat() + 'Z',
-              'wti': wti,
-              'brent': brent,
-          }
-
-          os.makedirs('dashboard/data', exist_ok=True)
-          with open('dashboard/data/oil-prices.json', 'w') as f:
-              json.dump(output, f, indent=2)
-
-          print(f"Done. WTI records: {len(wti['data'])}, Brent records: {len(brent['data'])}")
-          PYEOF
+      - name: Combine and write dashboard JSON
+        run: python3 .github/scripts/fetch_oil_prices.py
 
       - name: Commit and push updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add dashboard/data/oil-prices.json
-
-          # Only commit if the file actually changed
           if git diff --staged --quiet; then
-            echo "No changes to commit — data is up to date."
+            echo "No changes to commit -- prices unchanged since last run."
           else
             git commit -m "chore: update oil price data [skip ci]"
             git push
