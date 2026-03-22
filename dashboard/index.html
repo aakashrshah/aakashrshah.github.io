@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta name="description" content="Aakash Shah's personal data dashboard — curated market insights updated automatically.">
+  <title>Dashboard | Aakash Shah</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="icon" href="../favicon.ico">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="dash-nav">
+    <div class="dash-nav-inner">
+      <a href="../" class="dash-nav-logo">aakash<span>shah</span></a>
+      <div class="dash-nav-links">
+        <a href="../blog/" class="hide-mobile">Blog</a>
+        <a href="../almanack/" class="hide-mobile">Almanack</a>
+        <a href="../#about" class="hide-mobile">Portfolio</a>
+        <a href="../dashboard/" class="active">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="dash-hero">
+    <div class="dash-eyebrow">Personal Dashboard</div>
+    <h1>Market Pulse</h1>
+    <p>Curated data widgets with mathematical context — updated automatically via GitHub Actions.</p>
+    <div class="dash-last-updated">
+      <span class="dot"></span>
+      <span id="last-updated">Loading…</span>
+    </div>
+  </div>
+
+  <!-- Widgets -->
+  <div class="dash-grid">
+
+    <!-- ── Oil Price Widget ───────────────────────── -->
+    <div class="widget" id="oil-widget">
+      <div class="widget-header">
+        <div class="widget-title">
+          <i class="fa-solid fa-oil-well"></i>
+          Crude Oil Prices
+        </div>
+        <span class="widget-badge">WTI · Brent</span>
+      </div>
+      <div id="oil-widget-body">
+        <!-- Loading skeleton -->
+        <div class="oil-prices-row">
+          <div>
+            <div class="loading-shimmer" style="width:80px;height:.75rem;margin-bottom:10px"></div>
+            <div class="loading-shimmer" style="width:160px;height:2.5rem;margin-bottom:10px"></div>
+            <div class="loading-shimmer" style="width:200px;height:1.5rem"></div>
+          </div>
+          <div>
+            <div class="loading-shimmer" style="width:90px;height:.75rem;margin-bottom:10px"></div>
+            <div class="loading-shimmer" style="width:160px;height:2.5rem;margin-bottom:10px"></div>
+            <div class="loading-shimmer" style="width:200px;height:1.5rem"></div>
+          </div>
+        </div>
+        <div class="loading-shimmer" style="width:100%;height:100px;margin:20px 0"></div>
+        <div class="insights-grid">
+          <div class="loading-shimmer" style="height:120px"></div>
+          <div class="loading-shimmer" style="height:120px"></div>
+          <div class="loading-shimmer" style="height:120px"></div>
+          <div class="loading-shimmer" style="height:120px"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="dash-footer">
+    <p>
+      Oil price data via <a href="https://www.alphavantage.co" target="_blank" rel="noopener">Alpha Vantage</a>
+      · Refreshed every 6 hours by GitHub Actions
+      · <a href="../">aakashrshah.github.io</a>
+    </p>
+  </footer>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
