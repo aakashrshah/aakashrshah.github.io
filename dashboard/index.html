@@ -45,24 +45,30 @@
     </div>
   </div>
 
-  <!-- ── Market Carousel ──────────────────────────────── -->
-  <div class="market-carousel" id="market-carousel">
-
-    <!-- Tab strip (one tab per market) -->
-    <div class="carousel-tabs" id="carousel-tabs">
-      <button class="carousel-tab active" data-idx="0">
-        <i class="fa-solid fa-oil-well"></i>
-        Crude Oil
+  <!-- ── Market switcher nav ───────────────────────────── -->
+  <div class="market-nav" id="market-nav">
+    <div class="market-nav-inner">
+      <button class="market-arrow" id="market-prev" aria-label="Previous market" disabled>
+        <i class="fa-solid fa-chevron-left"></i>
       </button>
-      <!-- future market tabs injected here -->
+      <div class="market-nav-label">
+        <i class="fa-solid fa-oil-well" id="market-nav-icon"></i>
+        <span id="market-nav-name">Crude Oil</span>
+        <span class="market-nav-counter" id="market-nav-counter">1 / 2</span>
+      </div>
+      <button class="market-arrow" id="market-next" aria-label="Next market">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
     </div>
+  </div>
 
-    <!-- Slides viewport -->
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="carousel-track">
+  <!-- ── Market slides wrapper ─────────────────────────── -->
+  <div class="market-wrapper" id="market-wrapper">
+    <div class="market-track" id="market-track">
 
-        <!-- ── Slide 0: Crude Oil ───────────────────── -->
-        <div class="carousel-slide">
+      <!-- ── Slide 0: Crude Oil ──────────────────────── -->
+      <div class="market-slide">
+        <div class="dash-grid">
 
           <!-- Supply chain process diagram -->
           <div class="process-diagram">
@@ -75,40 +81,34 @@
                 <span class="process-desc">Seismic surveys locate subsurface reservoirs onshore &amp; offshore</span>
               </div>
             </div>
-
             <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-
             <div class="process-step">
               <div class="process-icon">
                 <i class="fa-solid fa-oil-well"></i>
               </div>
               <div class="process-body">
                 <span class="process-label">Extraction</span>
-                <span class="process-desc">Wells drilled; crude pumped to surface at WTI &amp; Brent benchmarks</span>
+                <span class="process-desc">Wells drilled; crude pumped at WTI &amp; Brent benchmarks</span>
               </div>
             </div>
-
             <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-
             <div class="process-step">
               <div class="process-icon">
                 <i class="fa-solid fa-industry"></i>
               </div>
               <div class="process-body">
                 <span class="process-label">Refining</span>
-                <span class="process-desc">Distillation &amp; cracking yield gasoline, diesel, jet fuel, naphtha</span>
+                <span class="process-desc">Distillation &amp; cracking yield gasoline, diesel, jet fuel</span>
               </div>
             </div>
-
             <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-
             <div class="process-step">
               <div class="process-icon">
                 <i class="fa-solid fa-gas-pump"></i>
               </div>
               <div class="process-body">
                 <span class="process-label">Distribution</span>
-                <span class="process-desc">Pipelines &amp; tankers deliver to terminals, retailers &amp; industry</span>
+                <span class="process-desc">Pipelines &amp; tankers deliver to terminals &amp; retail</span>
               </div>
             </div>
           </div>
@@ -147,17 +147,24 @@
           </div>
 
         </div>
-        <!-- end slide 0 -->
+      </div>
+      <!-- end slide 0 -->
 
-      </div><!-- end carousel-track -->
-    </div><!-- end carousel-viewport -->
+      <!-- ── Slide 1: Natural Gas (placeholder) ──────── -->
+      <div class="market-slide">
+        <div class="dash-grid">
+          <div class="under-construction">
+            <div class="uc-icon"><i class="fa-solid fa-hard-hat"></i></div>
+            <h2>Natural Gas</h2>
+            <p>This market dashboard is under construction.</p>
+            <p class="uc-hint">Henry Hub spot prices, storage levels, and demand insights — coming soon.</p>
+          </div>
+        </div>
+      </div>
+      <!-- end slide 1 -->
 
-    <!-- Dot indicators -->
-    <div class="carousel-dots" id="carousel-dots">
-      <span class="carousel-dot active" data-idx="0"></span>
-    </div>
-
-  </div><!-- end market-carousel -->
+    </div><!-- end market-track -->
+  </div><!-- end market-wrapper -->
 
   <!-- Footer -->
   <footer class="dash-footer">
