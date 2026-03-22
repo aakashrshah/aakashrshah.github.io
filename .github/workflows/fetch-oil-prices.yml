@@ -2,9 +2,8 @@ name: Fetch Oil Prices
 
 on:
   schedule:
-    # Every 6 hours — uses 2 API calls per run, well within free tier (25/day)
     - cron: '0 */6 * * *'
-  workflow_dispatch:  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,13 +24,12 @@ jobs:
         run: |
           if [ -z "${ALPHA_VANTAGE_API_KEY}" ]; then
             echo "ERROR: ALPHA_VANTAGE_API_KEY secret is not set."
-            echo "Go to Settings → Secrets and variables → Actions → New repository secret"
-            echo "Name: ALPHA_VANTAGE_API_KEY"
+            echo "Go to Settings -> Secrets and variables -> Actions -> New repository secret"
             exit 1
           fi
           KEY_LEN=${#ALPHA_VANTAGE_API_KEY}
           KEY_PREVIEW="${ALPHA_VANTAGE_API_KEY:0:4}...${ALPHA_VANTAGE_API_KEY: -4}"
-          echo "API key is set — length: ${KEY_LEN}, preview: ${KEY_PREVIEW}"
+          echo "API key is set -- length: ${KEY_LEN}, preview: ${KEY_PREVIEW}"
 
       - name: Fetch WTI crude oil price
         env:
@@ -41,35 +39,16 @@ jobs:
           HTTP_STATUS=$(curl -s -o /tmp/wti_raw.json -w "%{http_code}" \
             "https://www.alphavantage.co/query?function=WTI&interval=daily&apikey=${ALPHA_VANTAGE_API_KEY}")
           echo "WTI HTTP status: ${HTTP_STATUS}"
-
           if [ "${HTTP_STATUS}" != "200" ]; then
             echo "ERROR: Non-200 response for WTI (got ${HTTP_STATUS})"
             exit 1
           fi
+          echo "WTI raw response (first 200 chars):"
+          head -c 200 /tmp/wti_raw.json
+          echo ""
 
-          # Show response structure (keys only, no sensitive data)
-          python3 -c "
-          import json
-          with open('/tmp/wti_raw.json') as f:
-              d = json.load(f)
-          keys = list(d.keys())
-          print('WTI response keys:', keys)
-          if 'data' in d:
-              print(f'WTI data points: {len(d[\"data\"])}')
-              print(f'WTI most recent: {d[\"data\"][0]}')
-          elif 'Information' in d:
-              print('ERROR — Rate limit hit:', d['Information'][:120])
-              exit(1)
-          else:
-              print('ERROR — Unexpected response structure')
-              exit(1)
-          "
-
-      - name: Wait 15 seconds (Alpha Vantage rate limit: 5 req/min on free tier)
-        run: |
-          echo "Waiting 15s before next API call to avoid rate limiting..."
-          sleep 15
-          echo "Done waiting."
+      - name: Wait to avoid rate limiting
+        run: sleep 15
 
       - name: Fetch Brent crude oil price
         env:
@@ -79,79 +58,24 @@ jobs:
           HTTP_STATUS=$(curl -s -o /tmp/brent_raw.json -w "%{http_code}" \
             "https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${ALPHA_VANTAGE_API_KEY}")
           echo "Brent HTTP status: ${HTTP_STATUS}"
-
           if [ "${HTTP_STATUS}" != "200" ]; then
             echo "ERROR: Non-200 response for Brent (got ${HTTP_STATUS})"
             exit 1
           fi
-
-          python3 -c "
-          import json
-          with open('/tmp/brent_raw.json') as f:
-              d = json.load(f)
-          keys = list(d.keys())
-          print('Brent response keys:', keys)
-          if 'data' in d:
-              print(f'Brent data points: {len(d[\"data\"])}')
-              print(f'Brent most recent: {d[\"data\"][0]}')
-          elif 'Information' in d:
-              print('ERROR — Rate limit hit:', d['Information'][:120])
-              exit(1)
-          else:
-              print('ERROR — Unexpected response structure')
-              exit(1)
-          "
+          echo "Brent raw response (first 200 chars):"
+          head -c 200 /tmp/brent_raw.json
+          echo ""
 
       - name: Combine and write dashboard JSON
-        run: |
-          echo "=== Combining into dashboard/data/oil-prices.json ==="
-          python3 - <<'PYEOF'
-          import json, datetime, os, sys
-
-          def load(path):
-              with open(path) as f:
-                  return json.load(f)
-
-          wti   = load('/tmp/wti_raw.json')
-          brent = load('/tmp/brent_raw.json')
-
-          # Final validation
-          errors = []
-          if 'data' not in wti:
-              errors.append(f"WTI missing 'data' key. Keys: {list(wti.keys())}")
-          if 'data' not in brent:
-              errors.append(f"Brent missing 'data' key. Keys: {list(brent.keys())}")
-          if errors:
-              for e in errors:
-                  print("ERROR:", e)
-              sys.exit(1)
-
-          output = {
-              'updated_at': datetime.datetime.utcnow().isoformat() + 'Z',
-              'wti': wti,
-              'brent': brent,
-          }
-
-          os.makedirs('dashboard/data', exist_ok=True)
-          with open('dashboard/data/oil-prices.json', 'w') as f:
-              json.dump(output, f, indent=2)
-
-          wti_latest   = wti['data'][0]
-          brent_latest = brent['data'][0]
-          print(f"SUCCESS")
-          print(f"  WTI:   {wti_latest['date']} = ${wti_latest['value']}/bbl  ({len(wti['data'])} records)")
-          print(f"  Brent: {brent_latest['date']} = ${brent_latest['value']}/bbl  ({len(brent['data'])} records)")
-          print(f"  Written to dashboard/data/oil-prices.json")
-          PYEOF
+        run: python3 .github/scripts/fetch_oil_prices.py
 
       - name: Commit and push updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add dashboard/data/oil-prices.json
-
           if git diff --staged --quiet; then
-            echo "No changes to commit — prices unchanged since last run."
+            echo "No changes to commit -- prices unchanged since last run."
           else
             git commit -m "chore: update oil price data [skip ci]"
             git push
