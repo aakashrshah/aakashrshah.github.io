@@ -386,39 +386,71 @@
     }
   }
 
-  // ── Carousel ───────────────────────────────────────────────────────────────
+  // ── Market switcher ────────────────────────────────────────────────────────
 
-  function initCarousel() {
-    const track  = document.getElementById('carousel-track');
-    const tabs   = document.querySelectorAll('.carousel-tab');
-    const dots   = document.querySelectorAll('.carousel-dot');
-    if (!track || !tabs.length) return;
+  const MARKETS = [
+    { name: 'Crude Oil',    icon: 'fa-oil-well'  },
+    { name: 'Natural Gas',  icon: 'fa-fire-flame-curved' },
+  ];
 
+  function initMarketSwitcher() {
+    const track   = document.getElementById('market-track');
+    const wrapper = document.getElementById('market-wrapper');
+    const btnPrev = document.getElementById('market-prev');
+    const btnNext = document.getElementById('market-next');
+    const navName = document.getElementById('market-nav-name');
+    const navIcon = document.getElementById('market-nav-icon');
+    const navCtr  = document.getElementById('market-nav-counter');
+    if (!track || !btnPrev || !btnNext) return;
+
+    const slides = track.querySelectorAll('.market-slide');
     let current = 0;
 
+    function setWrapperHeight(idx) {
+      // Size wrapper to active slide so page height adjusts naturally
+      wrapper.style.height = slides[idx].scrollHeight + 'px';
+    }
+
     function goTo(idx) {
-      const slides = track.querySelectorAll('.carousel-slide');
       if (idx < 0 || idx >= slides.length) return;
       current = idx;
       track.style.transform = `translateX(-${idx * 100}%)`;
-      tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      setWrapperHeight(idx);
+
+      // Update nav label
+      const m = MARKETS[idx] || MARKETS[0];
+      navName.textContent = m.name;
+      navIcon.className   = 'fa-solid ' + m.icon;
+      navCtr.textContent  = `${idx + 1} / ${slides.length}`;
+
+      // Disable arrows at boundaries
+      btnPrev.disabled = idx === 0;
+      btnNext.disabled = idx === slides.length - 1;
+
+      // Scroll back to top when switching markets
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    tabs.forEach((tab, i) => tab.addEventListener('click', () => goTo(i)));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => goTo(current + 1));
 
-    // Swipe support for mobile
+    // Swipe support
     let startX = 0;
     track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
     });
+
+    // Initialise height for slide 0; re-measure after data loads
+    setWrapperHeight(0);
+    // Re-measure once layout settles (fonts, images)
+    window.addEventListener('load', () => setWrapperHeight(current));
+    return { refresh: () => setWrapperHeight(current) };
   }
 
   window.addEventListener('DOMContentLoaded', () => {
-    initCarousel();
-    init();
+    const switcher = initMarketSwitcher();
+    init().then(() => switcher && switcher.refresh()).catch(() => {});
   });
 })();
