@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </footer>
 
   <!-- Lyket Widget -->
-  <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=REDACTED_API_KEY"></script>
+  <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_da20c945582ef40db16e9684abef3b"></script>
 </body>
 </html>`;
   }

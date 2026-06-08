@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI in Clinical Operations | Aakash Shah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="blog-nav">
+    <div class="blog-nav-inner">
+      <a href="../../" class="blog-nav-logo">aakash<span>shah</span></a>
+      <div class="blog-nav-links">
+        <a href="../">All Posts</a>
+        <a href="../../#about" class="hide-mobile">Portfolio</a>
+        <a href="../write.html" class="btn-write">Write</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Header -->
+  <header class="post-header">
+    <div class="post-date">October 20, 2024</div>
+    <h1>Agentic AI in Clinical Operations: Lessons from the Trenches</h1>
+    <p class="post-subtitle">Building multi-agent systems that clinicians actually trust required rethinking everything I knew about product development.</p>
+    <div class="post-tags-header">
+      <span class="post-card-tag">ai</span>
+      <span class="post-card-tag">life-sciences</span>
+      <span class="post-card-tag">agentic-ai</span>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <p>When we set out to build an agentic AI system for protocol digitization at IQVIA, I thought the hardest part would be getting the LLMs to extract data accurately from complex clinical protocol documents. I was wrong.</p>
+
+    <p>The hardest part was designing a system where multiple AI agents could work together reliably, transparently, and in a way that clinical operations teams would actually trust with their workflows.</p>
+
+    <h2>What is agentic AI, anyway?</h2>
+
+    <p>In practical terms, an agentic AI system is one where multiple specialized AI agents collaborate to accomplish complex tasks. Instead of one monolithic model trying to do everything, you have specialized agents that each handle a specific domain &mdash; and an orchestration layer that coordinates their work.</p>
+
+    <p>For our protocol digitization platform, we built six specialized agents:</p>
+
+    <ul>
+      <li><strong>Assessment Categorization Agent</strong> &mdash; Classifies clinical assessments from protocol text</li>
+      <li><strong>Visit Scheduling Agent</strong> &mdash; Extracts and structures visit schedules and timing windows</li>
+      <li><strong>Study Treatments Agent</strong> &mdash; Identifies treatment arms, dosing, and administration details</li>
+      <li><strong>Metadata Validation Agent</strong> &mdash; Cross-references extracted data against known standards</li>
+      <li><strong>Confidence Scoring Agent</strong> &mdash; Assigns reliability scores to each extraction</li>
+      <li><strong>Citation Mapping Agent</strong> &mdash; Links every extracted data point back to its source text</li>
+    </ul>
+
+    <h2>Why agents instead of one big model?</h2>
+
+    <p>The naive approach would be to throw the entire protocol document at a large language model and ask it to extract everything at once. We tried that. Here's why it doesn't work well for production systems:</p>
+
+    <p><strong>Accuracy drops with complexity.</strong> When you ask a model to handle 15 different extraction tasks simultaneously, accuracy degrades on the harder tasks. Specialization lets each agent focus on what it does best.</p>
+
+    <p><strong>Debugging becomes impossible.</strong> When a monolithic system gives you a wrong answer, good luck figuring out why. With agents, you can trace exactly which agent made the error and fix it in isolation.</p>
+
+    <p><strong>Trust requires traceability.</strong> Clinical operations teams need to verify AI outputs. Our citation mapping agent creates a direct link between every extracted value and the exact text in the source document. That's not a nice-to-have &mdash; it's table stakes for adoption.</p>
+
+    <h2>Lessons learned</h2>
+
+    <h3>Orchestration is the product</h3>
+
+    <p>Individual agents are just components. The real product is the orchestration layer that decides which agents to invoke, how to handle conflicts between agents, and how to present results to users. We spent more time on orchestration design than on any individual agent.</p>
+
+    <h3>Confidence scores change everything</h3>
+
+    <p>Adding a confidence score to every extraction transformed the user experience. Instead of reviewing every data point, clinical teams could focus on low-confidence items and trust the high-confidence ones. This cut review time by roughly 60%.</p>
+
+    <h3>USDM standards aren't optional</h3>
+
+    <p>In life sciences, documentation standards like USDM (Unified Study Data Model) aren't suggestions &mdash; they're regulatory requirements. We aligned our agent outputs with USDM from day one, which meant clinical teams could integrate our outputs directly into their existing systems without transformation.</p>
+
+    <h2>Scale and performance</h2>
+
+    <p>The system now handles 10,000+ daily requests at sub-100ms latency. That performance wasn't free &mdash; it required careful architecture decisions around caching, batching, and agent parallelization. But it means the AI feels instant to users, which matters more for adoption than any accuracy benchmark.</p>
+
+    <h2>What's next</h2>
+
+    <p>I believe agentic AI architectures will become the standard for complex enterprise applications. Not because they're trendy, but because they solve real problems: specialization, traceability, and incremental trust-building.</p>
+
+    <p>The key insight is that agents aren't just a technical pattern &mdash; they're a product pattern. Each agent represents a specific capability that users can understand, verify, and trust independently. That modularity is what makes adoption possible.</p>
+
+    <hr>
+
+    <p><em>I'm always interested in conversations about agentic AI, product management, and building trustworthy AI systems. Reach out on <a href="https://www.linkedin.com/in/aakashrshah">LinkedIn</a> or explore more on my <a href="../../">portfolio</a>.</em></p>
+  </article>
+
+  <!-- Lyket Like Button -->
+  <div class="post-likes">
+    <p>Did you enjoy this post?</p>
+    <div data-lyket-type="like" data-lyket-id="agentic-ai-clinical-operations" data-lyket-namespace="blog"></div>
+  </div>
+
+  <!-- Post Footer -->
+  <div class="post-footer">
+    <a href="../"><i class="fa-solid fa-arrow-left"></i> Back to all posts</a>
+    <a href="../../#contact">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <p>Aakash Shah &bull; Austin, TX</p>
+  </footer>
+
+  <!-- Lyket Widget -->
+  <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_da20c945582ef40db16e9684abef3b"></script>
+</body>
+</html>
