@@ -1,10 +1,30 @@
 {
-  "updated_at": "2026-08-26T19:46:24.216700Z",
+  "updated_at": "2026-08-27T07:50:00.440411Z",
   "wti": {
     "name": "Crude Oil Prices WTI",
     "interval": "daily",
     "unit": "dollars per barrel",
     "data": [
+      {
+        "date": "2026-08-25",
+        "value": "83.9"
+      },
+      {
+        "date": "2026-08-24",
+        "value": "86.34"
+      },
+      {
+        "date": "2026-08-21",
+        "value": "87.21"
+      },
+      {
+        "date": "2026-08-20",
+        "value": "89.75"
+      },
+      {
+        "date": "2026-08-19",
+        "value": "87.28"
+      },
       {
         "date": "2026-08-18",
         "value": "86.48"
@@ -42408,6 +42428,26 @@
     "interval": "daily",
     "unit": "dollars per barrel",
     "data": [
+      {
+        "date": "2026-08-25",
+        "value": "88.24"
+      },
+      {
+        "date": "2026-08-24",
+        "value": "92.71"
+      },
+      {
+        "date": "2026-08-21",
+        "value": "96.92"
+      },
+      {
+        "date": "2026-08-20",
+        "value": "94.0"
+      },
+      {
+        "date": "2026-08-19",
+        "value": "92.37"
+      },
       {
         "date": "2026-08-18",
         "value": "95.29"
