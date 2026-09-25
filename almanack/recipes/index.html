@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes | The Almanack | Aakash Shah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/almanack.css">
+  <link rel="stylesheet" href="recipes.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="alm-nav">
+    <div class="alm-nav-inner">
+      <a href="../../" class="alm-nav-logo">aakash<span>shah</span></a>
+      <div class="alm-nav-links">
+        <a href="../../blog/" class="hide-mobile">Blog</a>
+        <a href="../">Tips</a>
+        <a href="./" class="active">Recipes</a>
+        <a href="#howto">How to add</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="alm-hero">
+    <div class="alm-hero-icon">&#127859;</div>
+    <h1>The Almanack: <span>Recipes</span></h1>
+    <p>Food I actually like and keep coming back to — written down so I (and you) can make it again without guessing.</p>
+  </div>
+
+  <!-- Controls -->
+  <div class="alm-controls">
+    <div class="alm-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="rec-search" placeholder="Search recipes, ingredients...">
+    </div>
+    <div class="alm-age-filters" id="category-filters"></div>
+  </div>
+  <div class="rec-count-row">
+    <span class="alm-count" id="recipe-count"></span>
+  </div>
+
+  <!-- Recipes -->
+  <div id="recipes-container" class="alm-tips">
+    <div class="no-tips">Loading recipes...</div>
+  </div>
+
+  <!-- How to add -->
+  <div class="alm-howto" id="howto">
+    <div class="alm-howto-card">
+      <h3>How to add a new recipe</h3>
+      <ol>
+        <li>Open <code>almanack/recipes/recipes.json</code> in your repo (you can edit it right on GitHub).</li>
+        <li>Copy the template below and add it to the <code>"recipes"</code> array (mind the comma between entries).</li>
+        <li>Commit and push. The page auto-renders from the JSON — no HTML editing needed.</li>
+      </ol>
+      <pre>{
+  "id": "your-recipe-slug",
+  "title": "Recipe Name",
+  "description": "One or two lines on why it's good.",
+  "category": "Mains",
+  "tags": ["vegetarian", "quick"],
+  "time": "30 min",
+  "serves": "2",
+  "components": [
+    {
+      "name": "Main",
+      "ingredients": ["1 cup something", "Salt to taste"],
+      "steps": ["Do this.", "Then that."]
+    }
+  ],
+  "serving": "How to serve it (optional).",
+  "notes": ["Any tips or variations (optional)."]
+}</pre>
+      <p class="rec-howto-note"><strong>Components:</strong> use one component for a simple dish, or several (e.g. dough, filling, dip) for multi-part recipes. <strong>Category</strong> becomes a filter button automatically (Breakfast, Mains, Snacks, Desserts, Drinks…). Only <code>title</code> and <code>components</code> are required.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="alm-footer">
+    <p>Aakash Shah &bull; Austin, TX</p>
+  </footer>
+
+  <script src="recipes.js"></script>
+</body>
+</html>
