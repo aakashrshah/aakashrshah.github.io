@@ -1,0 +1,42 @@
+/* Recipes — extends ../css/almanack.css */
+.alm-nav-links a.active{color:var(--accent-amber)}
+.rec-count-row{max-width:var(--max-width);margin:0 auto;padding:0 24px 12px}
+
+.rec-card{cursor:default}
+.rec-desc{font-family:var(--font-serif);font-size:1.05rem;line-height:1.75;color:var(--text-dark-secondary)}
+.rec-facts{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0 4px;font-size:.8rem;color:var(--text-muted)}
+.rec-facts i{color:var(--accent-amber);margin-right:4px}
+
+.rec-toggle{margin-top:16px;padding:8px 16px;border-radius:var(--radius-full);font-size:.8rem;font-weight:600;color:var(--accent-amber);border:1px solid var(--border-warm);background:var(--bg-warm);transition:all .2s}
+.rec-toggle:hover{background:var(--accent-amber);color:white;border-color:var(--accent-amber)}
+.rec-toggle i{margin-left:6px;transition:transform .2s}
+.rec-card.open .rec-toggle i{transform:rotate(180deg)}
+
+.rec-body{display:none;margin-top:24px;border-top:1px dashed var(--border-light);padding-top:24px}
+.rec-card.open .rec-body{display:block}
+
+.rec-component{margin-bottom:28px}
+.rec-component:last-child{margin-bottom:0}
+.rec-component h3{font-size:1.05rem;font-weight:700;margin-bottom:14px;color:var(--text-dark)}
+.rec-component h3::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gradient-warm);margin-right:10px;vertical-align:middle}
+.rec-cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:28px}
+.rec-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:8px}
+
+.rec-ingredients li{font-size:.9rem;color:var(--text-dark-secondary);line-height:1.5;margin-bottom:6px}
+.rec-ingredients label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.rec-ingredients input{margin-top:4px;accent-color:var(--accent-amber);flex-shrink:0}
+.rec-ingredients input:checked + span{text-decoration:line-through;color:var(--text-muted)}
+
+.rec-steps{counter-reset:step}
+.rec-steps li{counter-increment:step;position:relative;padding-left:34px;font-size:.92rem;color:var(--text-dark-secondary);line-height:1.6;margin-bottom:12px}
+.rec-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:rgba(217,119,6,0.1);color:var(--accent-amber);font-family:var(--font-mono);font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+.rec-extra{margin-top:24px;padding:16px 18px;background:var(--bg-warm);border:1px solid var(--border-warm);border-radius:var(--radius-sm);font-size:.9rem;color:var(--text-dark-secondary);line-height:1.6}
+.rec-extra ul{list-style:disc;padding-left:18px}
+.rec-extra li{margin-bottom:4px}
+
+.rec-howto-note{font-size:.8rem;color:var(--text-muted);margin-top:12px}
+
+@media(max-width:768px){
+  .rec-cols{grid-template-columns:1fr;gap:16px}
+}

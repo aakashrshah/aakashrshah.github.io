@@ -1,0 +1,88 @@
+{
+  "title": "Recipes",
+  "subtitle": "Food I actually like and keep coming back to.",
+  "recipes": [
+    {
+      "id": "tofu-thepla-corn-rajma",
+      "title": "Tofu Thepla with Corn & Rajma Filling and Yogurt Dip",
+      "description": "Soft, protein-packed methi theplas made with crumbled tofu, rolled around a spicy corn and rajma filling, dunked in a cool garlicky yogurt dip. Great for lunch boxes and travel.",
+      "category": "Mains",
+      "tags": ["gujarati", "high-protein", "vegetarian", "meal-prep"],
+      "time": "45 min",
+      "serves": "3-4 (about 10 theplas)",
+      "components": [
+        {
+          "name": "Tofu Thepla",
+          "ingredients": [
+            "2 cups whole wheat flour (atta)",
+            "200 g firm tofu, finely crumbled or grated",
+            "1 cup fresh methi (fenugreek) leaves, chopped — or 2 tbsp kasuri methi",
+            "1 tsp ginger–green chilli paste",
+            "1/2 tsp turmeric",
+            "1 tsp red chilli powder",
+            "1/2 tsp ajwain (carom seeds)",
+            "1 tbsp white sesame seeds",
+            "1 tsp sugar (optional)",
+            "Salt to taste",
+            "2 tbsp oil + more for cooking",
+            "Water, only as needed"
+          ],
+          "steps": [
+            "In a bowl, mix the flour, crumbled tofu, methi, ginger–chilli paste, all the spices, sesame, sugar, salt and 2 tbsp oil.",
+            "Rub everything together with your fingers first — the tofu releases moisture, so you'll need very little water.",
+            "Add water a spoon at a time and knead into a soft, smooth dough. Rest it covered for 10–15 minutes.",
+            "Divide into ~10 balls. Roll each thin (about 6–7 inch circle), dusting with flour as needed.",
+            "Cook on a hot tava: flip once small bubbles appear, brush a little oil on both sides, and press gently until golden spots form."
+          ]
+        },
+        {
+          "name": "Corn & Rajma Filling",
+          "ingredients": [
+            "1.5 cups cooked rajma (kidney beans) — canned, rinsed, works fine",
+            "1 cup sweet corn kernels",
+            "1 onion, finely chopped",
+            "1 small capsicum, finely chopped (optional)",
+            "1 tomato, finely chopped",
+            "2 cloves garlic, minced",
+            "1 tsp cumin seeds",
+            "1 tsp red chilli powder",
+            "1/2 tsp garam masala",
+            "1/2 tsp chaat masala",
+            "Juice of 1/2 lemon",
+            "Handful of coriander, chopped",
+            "Salt to taste, 1 tbsp oil"
+          ],
+          "steps": [
+            "Heat oil, add cumin seeds. When they splutter, add garlic and onion and sauté until soft.",
+            "Add capsicum and tomato; cook until the tomato breaks down.",
+            "Add rajma, corn, chilli powder, garam masala and salt. Cook 5 minutes.",
+            "Lightly mash about half the rajma so the filling holds together when rolled.",
+            "Turn off heat and finish with chaat masala, lemon juice and coriander."
+          ]
+        },
+        {
+          "name": "Yogurt Dip",
+          "ingredients": [
+            "1 cup thick yogurt (or hung curd)",
+            "1 small clove garlic, grated",
+            "1/2 tsp roasted cumin powder",
+            "Pinch of black salt (kala namak)",
+            "Chopped mint or coriander",
+            "Salt to taste",
+            "Grated cucumber (optional)"
+          ],
+          "steps": [
+            "Whisk the yogurt until smooth.",
+            "Stir in garlic, roasted cumin, black salt, salt and herbs (and cucumber, squeezed dry, if using).",
+            "Chill until serving."
+          ]
+        }
+      ],
+      "serving": "Spread 2–3 spoons of filling on a warm thepla, roll it up, and dip into the yogurt as you go.",
+      "notes": [
+        "Theplas keep 2–3 days at room temperature and are ideal for travel — store the filling separately in the fridge.",
+        "Extra-firm tofu gives the best texture; press it for 10 minutes if it feels watery."
+      ]
+    }
+  ]
+}
